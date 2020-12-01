@@ -1,8 +1,10 @@
+URL='https://www.costco.ca/lg-65-in.-smart-4k-oled-tv-oled65cx.product.100661682.html'
+PRODUCT_NAME='LG OLED65CX'
 source .env
 while :
 do
   TIME=$(date +%Y-%m-%d_%H-%M-%S)
-  RESPONSE=$(curl -s 'https://www.costco.ca/lg-65-in.-smart-4k-oled-tv-oled65cx.product.100661682.html' \
+  RESPONSE=$(curl -s $URL \
   -H 'authority: www.costco.ca' \
   -H 'cache-control: max-age=0' \
   -H 'upgrade-insecure-requests: 1' \
@@ -16,26 +18,22 @@ do
   --compressed)
 
   STOCK_STATUS=$(echo "$RESPONSE" | tidy -q --show-errors 0 | pcregrep -o1 'input.*value="(Out of Stock|Add to Cart)"')
-  echo "$TIME: Stock is: $STOCK_STATUS"
-  # In stock test
-  #
-  # No response test
-  #
+  echo "$TIME: $PRODUCT_NAME Stock is: $STOCK_STATUS"
 
   case $STOCK_STATUS in
   "Out of Stock")
-    MESSAGE="$TIME: Item is Out of Stock"
+    MESSAGE="$TIME: $PRODUCT_NAME Item is Out of Stock"
     SEND_NOTIFICATION=false
-    WAIT_TIME=30
+    WAIT_TIME=$CHECK_INTERVAL
     ;;
   "Add to Cart")
-    MESSAGE="$TIME: Item is IN STOCK"
+    MESSAGE="$TIME: $PRODUCT_NAME Item is IN STOCK"
     SEND_NOTIFICATION=true
     NOTIFICATION_PRIORITY=2
     WAIT_TIME=300
     ;;
   *)
-    MESSAGE="$TIME: No response, cURL must have failed. Check if reauth is needed"
+    MESSAGE="$TIME: $PRODUCT_NAME No response, cURL must have failed. Check if reauth is needed"
     SEND_NOTIFICATION=true
     NOTIFICATION_PRIORITY=1
     WAIT_TIME=300
@@ -55,10 +53,6 @@ do
          --form-string "retry=30" \
          --form-string "expire=300" \
          https://api.pushover.net/1/messages.json
-
-      if [ "$NOTIFICATION_PRIORITY" = 2 ] ; then
-        break
-      fi
   fi
   sleep $WAIT_TIME
 done
