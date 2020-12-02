@@ -1,6 +1,6 @@
-URL='https://www.canadacomputers.com/product_info.php?cPath=4_64_1969&item_id=183430'
+URL='https://www.canadacomputers.com/product_info.php?cPath=4_64_1969&item_id=183427'
 SHOP_NAME='Canada Computers'
-PRODUCT_NAME='RYZEN 5900X'
+PRODUCT_NAME='RYZEN 5950X'
 source .env
 source scrapers/helpers/notifiers.sh
 
