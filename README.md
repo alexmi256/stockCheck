@@ -11,6 +11,8 @@ Supported Websites:
 
 Users are notified via [https://pushover.net/](https://pushover.net/)
 
+This project does not require a whole browser instance to be set up and should theoretically be faster than using Selenium/Puppeteer
+
 # Setup
 ## Requirements
 Requires following utils:
