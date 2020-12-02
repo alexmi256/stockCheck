@@ -1,4 +1,5 @@
 URL='https://www.amd.com/en/direct-buy/5450881500/ca'
+SHOP_NAME='AMD Direct Buy'
 PRODUCT_NAME='RYZEN 5900X'
 source .env
 while :

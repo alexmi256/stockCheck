@@ -1,4 +1,5 @@
 URL='https://www.costco.ca/lg-65-in.-smart-4k-oled-tv-oled65cx.product.100661682.html'
+SHOP_NAME='Costco Canada'
 PRODUCT_NAME='LG OLED65CX'
 source .env
 while :
@@ -16,24 +17,25 @@ do
   -H 'sec-fetch-dest: document' \
   -H 'accept-language: en-US,en;q=0.9' \
   --compressed)
+  DESCRIPTION="$TIME: $PRODUCT_NAME at $SHOP_NAME"
 
   STOCK_STATUS=$(echo "$RESPONSE" | tidy -q --show-errors 0 | pcregrep -o1 'input.*value="(Out of Stock|Add to Cart)"')
-  echo "$TIME: $PRODUCT_NAME Stock is: $STOCK_STATUS"
+  echo "$DESCRIPTION Stock is: $STOCK_STATUS"
 
   case $STOCK_STATUS in
   "Out of Stock")
-    MESSAGE="$TIME: $PRODUCT_NAME Item is Out of Stock"
+    MESSAGE="$DESCRIPTION Item is Out of Stock"
     SEND_NOTIFICATION=false
     WAIT_TIME=$CHECK_INTERVAL
     ;;
   "Add to Cart")
-    MESSAGE="$TIME: $PRODUCT_NAME Item is IN STOCK"
+    MESSAGE="$DESCRIPTION Item is IN STOCK"
     SEND_NOTIFICATION=true
     NOTIFICATION_PRIORITY=2
     WAIT_TIME=300
     ;;
   *)
-    MESSAGE="$TIME: $PRODUCT_NAME No response, cURL must have failed. Check if reauth is needed"
+    MESSAGE="$DESCRIPTION No response, cURL must have failed. Check if reauth is needed"
     SEND_NOTIFICATION=true
     NOTIFICATION_PRIORITY=1
     WAIT_TIME=300

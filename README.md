@@ -4,8 +4,10 @@ A collection of bash scripts to scrape websites for in stock items and notify a 
 Supported Websites:
 - Costco Canada
 - AMD Direct Buy
+- Canada Computers
 - TODO: MemoryExpress
-- TODO: Canada Computers
+- TODO: Newegg
+- TODO: Amazon
 
 Users are notified via [https://pushover.net/](https://pushover.net/)
 
@@ -13,6 +15,7 @@ Users are notified via [https://pushover.net/](https://pushover.net/)
 ## Requirements
 Requires following utils:
 - pcregrep
+- xidel
 ## Config
 Copy example config file to .env
 ```
@@ -24,5 +27,9 @@ USER_KEY=<pushover user key>
 APP_TOKEN=<pushover app token key>
 DEVICE=<pushover device name>
 CHECK_INTERVAL=30
+CC_LOCATIONS='online|warehouse'
 ```
 Then run one of the scripts under `scrapers/`
+```
+./scrapers/scrape_cc_5900x.sh
+```
