@@ -5,7 +5,7 @@ Supported Websites:
 - Costco Canada
 - AMD Direct Buy
 - Canada Computers
-- TODO: MemoryExpress
+- MemoryExpress
 - TODO: Newegg
 - TODO: Amazon
 
