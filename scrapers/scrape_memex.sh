@@ -23,7 +23,7 @@ function scrape_memex() {
 
     DESCRIPTION="$TIME: $PRODUCT_NAME at $SHOP_NAME"
     STOCK_STATUS=$(echo "$RESPONSE" | grep -o -E '("added"|Not Found)')
-    printf "%s has stock at:\n%s" "$DESCRIPTION" "$STOCK_STATUS"
+    printf "%s stock is: %s\n" "$DESCRIPTION" "$STOCK_STATUS"
 
     case $STOCK_STATUS in
     "Not Found")
@@ -40,7 +40,7 @@ function scrape_memex() {
     *)
       MESSAGE="$DESCRIPTION failed to scrape"
       SEND_NOTIFICATION=true
-      NOTIFICATION_PRIORITY=1
+      NOTIFICATION_PRIORITY=-1
       WAIT_TIME=30
       ;;
     esac

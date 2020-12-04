@@ -6,7 +6,7 @@ Supported Websites:
 - AMD Direct Buy
 - Canada Computers
 - MemoryExpress
-- TODO: Newegg
+- Newegg CA
 - TODO: Amazon
 
 Users are notified via [https://pushover.net/](https://pushover.net/)
