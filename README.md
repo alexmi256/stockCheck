@@ -8,6 +8,7 @@ Supported Websites:
 - MemoryExpress
 - Newegg CA
 - TODO: Amazon
+- TODO: Bestbuy
 
 Users are notified via [https://pushover.net/](https://pushover.net/)
 

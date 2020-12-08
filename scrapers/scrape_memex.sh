@@ -27,18 +27,18 @@ function scrape_memex() {
 
     case $STOCK_STATUS in
     "Not Found")
-      MESSAGE="$DESCRIPTION Item is Out of Stock"
+      MESSAGE="$DESCRIPTION is $STOCK_STATUS (OOS)"
       SEND_NOTIFICATION=false
       WAIT_TIME=$CHECK_INTERVAL
       ;;
     '"added"')
-      MESSAGE="$DESCRIPTION Item is In Stock"
+      MESSAGE="$DESCRIPTION is $STOCK_STATUS (IS)"
       SEND_NOTIFICATION=true
       NOTIFICATION_PRIORITY=2
       WAIT_TIME=300
       ;;
     *)
-      MESSAGE="$DESCRIPTION failed to scrape"
+      MESSAGE="$DESCRIPTION failed to scrape $STOCK_STATUS (Unknown)"
       SEND_NOTIFICATION=true
       NOTIFICATION_PRIORITY=-1
       WAIT_TIME=30

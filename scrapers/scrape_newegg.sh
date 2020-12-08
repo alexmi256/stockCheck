@@ -17,18 +17,18 @@ function scrape_newegg() {
 
     case $STOCK_STATUS in
     "Sold Out")
-      MESSAGE="$DESCRIPTION Item is Out of Stock"
+      MESSAGE="$DESCRIPTION Item is $STOCK_STATUS (OOS)"
       SEND_NOTIFICATION=false
       WAIT_TIME=$CHECK_INTERVAL
       ;;
     'Add to cart')
-      MESSAGE="$DESCRIPTION Item is In Stock"
+      MESSAGE="$DESCRIPTION Item is $STOCK_STATUS (IS)"
       SEND_NOTIFICATION=true
       NOTIFICATION_PRIORITY=2
       WAIT_TIME=300
       ;;
     *)
-      MESSAGE="$DESCRIPTION failed to scrape"
+      MESSAGE="$DESCRIPTION failed to scrape $STOCK_STATUS (Unknown)"
       SEND_NOTIFICATION=true
       NOTIFICATION_PRIORITY=-1
       WAIT_TIME=30
