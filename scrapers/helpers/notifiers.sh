@@ -1,5 +1,5 @@
 function send_pushover_notification() {
-  echo "Sending notification with priority $NOTIFICATION_PRIORITY"
+  echo "Notification for $1, priority: $3"
   curl -s \
     --form-string "token=$APP_TOKEN" \
     --form-string "user=$USER_KEY" \
